@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -29,7 +30,7 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    //console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
@@ -37,7 +38,7 @@ const Login = () => {
         navigate(from, { replace: true });
         toast.success('Log in Success');
         const user = result.user;
-        console.log(user);
+        //console.log(user);
       })
       .catch((error) => toast.error(error.message));
   };
@@ -95,9 +96,9 @@ const Login = () => {
               <div className="relative">
                 {' '}
                 <input
-                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline text-white"
-                  id="username"
-                  type="text"
+                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:shadow-outline text-white"
+                  type="email"
+                  name="email"
                   placeholder="Email"
                 />{' '}
                 <div className="absolute left-0 inset-y-0 flex items-center">
@@ -117,9 +118,9 @@ const Login = () => {
                 {' '}
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline text-white"
-                  id="username"
-                  type="text"
+                  type="password"
                   placeholder="Password"
+                  name="password"
                 />{' '}
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {' '}
@@ -135,7 +136,7 @@ const Login = () => {
               </div>{' '}
               <div className="mt-4 flex items-center text-gray-500">
                 {' '}
-                <input type="checkbox" id="remember" name="remember" className="mr-3" />{' '}
+                <input type="checkbox" name="remember" className="mr-3" />{' '}
                 <label htmlFor="remember">Remember me</label>{' '}
               </div>{' '}
               <div className="flex items-center justify-center mt-8">
