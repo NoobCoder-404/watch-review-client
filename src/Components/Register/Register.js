@@ -1,6 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../Contexts/AuthProvider';
 
 const Register = () => {
+  const { createUser, profileUpdate, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleGoogleSignin = () => {
+    googleSignIn()
+      .then((result) => {
+        navigate('/services');
+        toast.success('Google Sign in Successfully');
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    //console.log(name, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        toast.success('User Created Successfully');
+        form.reset();
+        navigate('/services');
+        const user = result.user;
+        console.log(user);
+
+        profileUpdate(name)
+          .then(() => {
+            toast.success('Profile Updated');
+          })
+          .catch((error) => console.log(error.message));
+      })
+      .catch((error) => toast.error(error.message));
+  };
   return (
     <div>
       <div className="pb-8">
@@ -13,21 +55,9 @@ const Register = () => {
             <div>
               {' '}
               <div className="flex items-center justify-center space-x-4 mt-3">
-                {' '}
-                <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                  {' '}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    className="w-6 h-6 mr-3">
-                    {' '}
-                    <path
-                      fillRule="evenodd"
-                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>{' '}
-                  </svg>{' '}
-                  Github{' '}
-                </button>{' '}
-                <button className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                <button
+                  onClick={handleGoogleSignin}
+                  className="flex items-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                   {' '}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,13 +92,12 @@ const Register = () => {
               {' '}
               Or sign Up with credentials{' '}
             </p>{' '}
-            <form className="mt-6">
+            <form onSubmit={handleSubmit} className="mt-6">
               {' '}
               <div className="relative mt-3">
                 {' '}
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline text-white"
-                  id="username"
                   type="text"
                   placeholder="Enter Your Name"
                 />{' '}
@@ -89,9 +118,9 @@ const Register = () => {
                 {' '}
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline text-white"
-                  id="username"
                   type="email"
                   placeholder="Email"
+                  name="email"
                 />{' '}
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {' '}
@@ -113,6 +142,7 @@ const Register = () => {
                   id="username"
                   type="password"
                   placeholder="Password"
+                  name="password"
                 />{' '}
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {' '}
