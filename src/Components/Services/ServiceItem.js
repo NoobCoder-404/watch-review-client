@@ -20,8 +20,8 @@ const ServiceItem = ({ service }) => {
         <h2 className="card-title">{ProductName}</h2>
         <p>{desc.slice(0, 100)}...</p>
         <div className="card-actions justify-end">
-          <Link>
-            <button className="btn btn-primary">See More </button>
+          <Link to={`/services/${_id}`}>
+            <button className="btn btn-primary">Details </button>
           </Link>
         </div>
       </div>
