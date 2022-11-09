@@ -7,7 +7,7 @@ import './Navbar.css';
 const Navbar = () => {
   return (
     <div className="mb-10">
-      <div className="navbar bg-base-100 px-10">
+      <div className="navbar bg-base-100 ">
         <div className="flex-1">
           <Link className="btn btn-ghost normal-case text-2xl text-white font-bold">
             {' '}
