@@ -124,6 +124,18 @@ const Register = () => {
                   </svg>{' '}
                 </div>{' '}
               </div>{' '}
+              <div className="relative mt-3">
+                <label
+                  className="block mb-2 text-sm font-medium text-slate-600 "
+                  htmlFor="file_input">
+                  Upload file
+                </label>
+                <input
+                  className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  id="file_input"
+                  type="file"
+                />
+              </div>
               <div className="mt-4 flex items-center text-gray-500">
                 {' '}
                 <input type="checkbox" id="remember" name="remember" className="mr-3" />{' '}
