@@ -22,6 +22,9 @@ const Home = () => {
           <img className="image-width" src={image1} alt="" />
         </div>
       </div>
+      <div>
+        <h1 className="text-4xl px-36 text-white font-bold pb-10">Services</h1>
+      </div>
       <Items />
       <div className="text-center pb-36">
         <Link to={'/services'}>
