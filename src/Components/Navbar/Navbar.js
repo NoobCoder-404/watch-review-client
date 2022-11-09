@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/Images/logo.png';
+import { AuthContext } from '../Contexts/AuthProvider';
 import './Navbar.css';
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="mb-10">
       <div className="navbar bg-base-100 ">
@@ -31,19 +34,37 @@ const Navbar = () => {
                 Blog
               </Link>
             </li>
-            <li>
-              <Link to={'/login'} className="px-3">
-                Log in
-              </Link>
-            </li>
-            <li>
-              <Link to={'/register'} className="px-3">
-                Register
-              </Link>
-            </li>
-            <li>
-              <Link className="px-3">Log Out</Link>
-            </li>
+
+            {user?.uid ? (
+              <>
+                <li>
+                  <Link to={'/myreview'} className="px-3">
+                    My Review
+                  </Link>
+                </li>
+                <li>
+                  <Link to={'/addservice'} className="px-3">
+                    Add Service
+                  </Link>
+                </li>
+                <li>
+                  <Link className="px-3">Log Out</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to={'/login'} className="px-3">
+                    Log in
+                  </Link>
+                </li>
+                <li>
+                  <Link to={'/register'} className="px-3">
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ol>
           <div className="dropdown dropdown-end lg:hidden">
             <label tabIndex={0} className="btn btn-ghost  avatar">
@@ -67,17 +88,36 @@ const Navbar = () => {
                   Blog
                 </Link>
               </li>
-              <li>
-                <Link to={'/login'} className="px-3">
-                  Log in
-                </Link>
-              </li>
-              <li>
-                <Link to={'/register'}>Register</Link>
-              </li>
-              <li>
-                <Link className="px-3">Log Out</Link>
-              </li>
+              {user?.uid ? (
+                <>
+                  <li>
+                    <Link to={'/myreview'} className="px-3">
+                      My Review
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/addservice'} className="px-3">
+                      Add Service
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="px-3">Log Out</Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to={'/login'} className="px-3">
+                      Log in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/register'} className="px-3">
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
