@@ -1,13 +1,24 @@
 import React, { useContext } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import logo from '../../Assets/Images/logo.png';
 import { AuthContext } from '../Contexts/AuthProvider';
 import './Navbar.css';
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate('/');
+        toast.warning('Log out Success');
+      })
+      .catch((error) => console.log(error.message));
+  };
   console.log(user);
+
   return (
     <div className="mb-10">
       <div className="navbar bg-base-100 ">
@@ -48,7 +59,9 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="px-3">Log Out</Link>
+                  <Link onClick={handleLogOut} className="px-3">
+                    Log Out
+                  </Link>
                 </li>
               </>
             ) : (
@@ -101,7 +114,9 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className="px-3">Log Out</Link>
+                    <Link onClick={handleLogOut} className="px-3">
+                      Log Out
+                    </Link>
                   </li>
                 </>
               ) : (
