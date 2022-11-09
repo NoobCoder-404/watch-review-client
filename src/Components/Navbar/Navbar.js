@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="mb-10">
       <div className="navbar bg-base-100 ">
         <div className="flex-1">
-          <Link className="btn btn-ghost normal-case text-2xl text-white font-bold">
+          <Link to={'/'} className="btn btn-ghost normal-case text-2xl text-white font-bold">
             {' '}
             <img style={{ width: '50px' }} src={logo} alt="" /> Watch Time
           </Link>
@@ -37,9 +37,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to={'/logout'} className="px-3">
-                Log Out
+              <Link to={'/register'} className="px-3">
+                Register
               </Link>
+            </li>
+            <li>
+              <Link className="px-3">Log Out</Link>
             </li>
           </ol>
           <div className="dropdown dropdown-end lg:hidden">
@@ -70,9 +73,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to={'/logout'} className="px-3">
-                  Log Out
-                </Link>
+                <Link to={'/register'}>Register</Link>
+              </li>
+              <li>
+                <Link className="px-3">Log Out</Link>
               </li>
             </ul>
           </div>
