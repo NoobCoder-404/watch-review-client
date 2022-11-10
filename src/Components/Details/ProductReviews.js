@@ -10,7 +10,7 @@ const ProductReviews = ({ productReview }) => {
   const handleDelete = (id) => {
     const proceed = confirm('Are you sure want to delete');
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://watch-review-server.vercel.app/reviews/${id}`, {
         method: 'DELETE'
       })
         .then((res) => res.json())

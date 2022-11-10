@@ -10,7 +10,7 @@ const Review = ({ id }) => {
   const [reviews, setReviews] = useState([]);
   useTitle('Review');
   //console.log(id);
-  const url = `http://localhost:5000/reviews?email=${user.email}`;
+  const url = `https://watch-review-server.vercel.app/reviews?email=${user.email}`;
 
   useEffect(() => {
     fetch(url)

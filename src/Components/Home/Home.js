@@ -35,12 +35,8 @@ const Home = () => {
           <button className="btn btn-primary w-32  inline-block ">See All</button>
         </Link>
       </div>
-      <div>
-        <FAQ />
-      </div>
-      <div>
-        <Contact />
-      </div>
+      <FAQ />
+      <Contact />
     </div>
   );
 };

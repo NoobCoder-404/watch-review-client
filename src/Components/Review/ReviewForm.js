@@ -22,7 +22,7 @@ const ReviewForm = ({ id }) => {
       serviceId: id,
       text: message
     };
-    fetch('http://localhost:5000/reviews', {
+    fetch('https://watch-review-server.vercel.app/reviews', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
