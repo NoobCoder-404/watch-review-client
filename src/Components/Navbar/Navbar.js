@@ -17,7 +17,7 @@ const Navbar = () => {
       })
       .catch((error) => console.log(error.message));
   };
-  console.log(user);
+  //console.log(user);
 
   return (
     <div className="mb-10">

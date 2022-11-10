@@ -38,17 +38,23 @@ const ReviewForm = ({ id }) => {
 
   return (
     <div>
-      <div className="form-container">
-        <form onSubmit={handleReview}>
-          <textarea
-            name="message"
-            className="textarea border border-white"
-            placeholder="review"
-            required></textarea>
-          <br />
-          <button className="btn btn-primary"> Review </button>
-        </form>
-      </div>
+      {user?.email ? (
+        <>
+          <div className="form-container pt-10 px-24">
+            <form onSubmit={handleReview}>
+              <textarea
+                name="message"
+                className="textarea border border-white  w-96 h-440"
+                placeholder="review"
+                required></textarea>
+              <br />
+              <button className="btn btn-primary"> Submit </button>
+            </form>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
