@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
+import useTitle from '../../Hooks/useTitle';
 import { AuthContext } from '../Contexts/AuthProvider';
 import ReviewItem from './ReviewItem';
 
 const Review = ({ id }) => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  useTitle('Review');
   //console.log(id);
   const url = `http://localhost:5000/reviews?email=${user.email}`;
 

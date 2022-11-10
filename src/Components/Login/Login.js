@@ -3,11 +3,12 @@
 import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useTitle from '../../Hooks/useTitle';
 import { AuthContext } from '../Contexts/AuthProvider';
 
 const Login = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
-
+  useTitle('Login');
   const navigate = useNavigate();
   const location = useLocation();
 

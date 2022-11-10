@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="flex-1">
           <Link to={'/'} className="btn btn-ghost normal-case text-2xl text-white font-bold">
             {' '}
-            <img style={{ width: '50px' }} src={logo} alt="" /> Watch Time
+            <img style={{ width: '50px' }} src={logo} alt="" /> Watch Maker
           </Link>
         </div>
         <div className="flex-none gap-2">

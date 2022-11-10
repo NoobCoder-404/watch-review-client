@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import image1 from '../../Assets/Images/logo.png';
+import useTitle from '../../Hooks/useTitle';
 import Items from '../Item/Items';
 import './Home.css';
 
 const Home = () => {
+  useTitle('Home');
   return (
     <div>
       <div className=" lg:flex items-center justify-around grid-container">

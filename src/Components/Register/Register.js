@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useTitle from '../../Hooks/useTitle';
 import { AuthContext } from '../Contexts/AuthProvider';
 
 const Register = () => {
   const { createUser, profileUpdate, googleSignIn } = useContext(AuthContext);
-
+  useTitle('Register');
   const [file, setFile] = useState();
   const handleChange = (e) => {
     console.log(e.target.files);
