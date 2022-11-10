@@ -1,10 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Contexts/AuthProvider';
 
 const Register = () => {
   const { createUser, profileUpdate, googleSignIn } = useContext(AuthContext);
+
+  const [file, setFile] = useState();
+  const handleChange = (e) => {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
+
   const navigate = useNavigate();
   const handleGoogleSignin = () => {
     googleSignIn()
@@ -22,20 +29,22 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
+
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    //console.log(name, email, password);
+    // const imageURL = form.image.value;
+    // console.log(name, email, password, imageURL);
 
     createUser(email, password)
       .then((result) => {
         toast.success('User Created Successfully');
         form.reset();
-        navigate('/services');
+        navigate('/home');
         const user = result.user;
         console.log(user);
 
-        profileUpdate(name)
+        profileUpdate(name, file)
           .then(() => {
             toast.success('Profile Updated');
           })
@@ -97,9 +106,10 @@ const Register = () => {
               <div className="relative mt-3">
                 {' '}
                 <input
-                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline text-white"
+                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md  transition  rounded-md w-full py-3  leading-tight focus:outline-none focus:shadow-outline text-white"
                   type="text"
                   placeholder="Enter Your Name"
+                  name="name"
                 />{' '}
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {' '}
@@ -163,9 +173,12 @@ const Register = () => {
                   Upload file
                 </label>
                 <input
+                  onChange={handleChange}
                   className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="file_input"
                   type="file"
+                  name="image"
+                  accept="image/*"
                 />
               </div>
               <div className="mt-4 flex items-center text-gray-500">

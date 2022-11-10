@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable prettier/prettier */
+
 import {
-    createUserWithEmailAndPassword,
-    getAuth,
-    GoogleAuthProvider,
-    onAuthStateChanged, signInWithEmailAndPassword,
-    signInWithPopup,
-    signOut,
-    updateProfile
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile
 } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firebase.init';
@@ -41,13 +42,10 @@ const AuthProvider = ({ children }) => {
   };
 
   //update profile
-  const profileUpdate = (name) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name
-    });
+  const profileUpdate = (name, imageURL) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, { displayName: name, photoURL: imageURL });
   };
-
-
 
   //google sign in
   const googleSignIn = () => {
@@ -56,10 +54,10 @@ const AuthProvider = ({ children }) => {
   };
 
   //github sign in
-//   const githubSignIn = () => {
-//     setLoading(true);
-//     return signInWithPopup(auth, githubProvider);
-//   };
+  //   const githubSignIn = () => {
+  //     setLoading(true);
+  //     return signInWithPopup(auth, githubProvider);
+  //   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
