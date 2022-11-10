@@ -12,7 +12,7 @@ const Details = () => {
       .then((res) => res.json())
       .then((data) => setProductReviews(data));
   }, []);
-  console.log(productReviews);
+  //console.log(productReviews);
 
   return (
     <div className="pb-36">
@@ -39,7 +39,7 @@ const Details = () => {
         })}
       </div>
       <div>
-        <ReviewForm />
+        <ReviewForm id={_id} />
       </div>
     </div>
   );

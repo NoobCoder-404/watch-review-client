@@ -5,6 +5,10 @@ import { AuthContext } from '../Contexts/AuthProvider';
 
 const ReviewForm = ({ id }) => {
   const { user } = useContext(AuthContext);
+  const refreshPage = () => {
+    window.location.reload();
+    toast.success('Review Added Successfully');
+  };
   const handleReview = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -29,7 +33,6 @@ const ReviewForm = ({ id }) => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          toast.success('Review Added Successfully');
           form.reset();
         }
       })
@@ -45,10 +48,11 @@ const ReviewForm = ({ id }) => {
               <textarea
                 name="message"
                 className="textarea border border-white  w-96 h-440"
-                placeholder="review"
-                required></textarea>
+                placeholder="review"></textarea>
               <br />
-              <button className="btn btn-primary"> Submit </button>
+              <button onClick={refreshPage} className="btn btn-primary">
+                Submit
+              </button>
             </form>
           </div>
         </>
