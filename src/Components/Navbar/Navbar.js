@@ -49,7 +49,7 @@ const Navbar = () => {
             {user?.uid ? (
               <>
                 <li>
-                  <Link to={'/myreview'} className="px-3">
+                  <Link to={'/reviews'} className="px-3">
                     My Review
                   </Link>
                 </li>
@@ -104,7 +104,7 @@ const Navbar = () => {
               {user?.uid ? (
                 <>
                   <li>
-                    <Link to={'/myreview'} className="px-3">
+                    <Link to={'/reviews'} className="px-3">
                       My Review
                     </Link>
                   </li>

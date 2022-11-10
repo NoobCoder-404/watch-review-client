@@ -2,6 +2,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Review from '../Review/Review';
+import ReviewForm from '../Review/ReviewForm';
 
 const Details = () => {
   const { _id, ProductName, desc, image } = useLoaderData();
@@ -19,7 +20,8 @@ const Details = () => {
         </div>
       </div>
       <div className="grid sm:grid-cols-1 lg:grid-cols-3 px-24">
-        <Review />
+        <Review id={_id} />
+        <ReviewForm id={_id} />
       </div>
     </div>
   );

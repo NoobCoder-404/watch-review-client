@@ -1,17 +1,27 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Contexts/AuthProvider';
 
-const Review = () => {
+const Review = ({ id }) => {
+  const { user } = useContext(AuthContext);
+  const [review, setReview] = useState({});
+  console.log(id);
+  const url = `http://localhost:5000/reviews?email=${user.email}`;
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setReview(data));
+  }, [user?.email]);
+
   return (
     <div>
+      <h1 className="text-5xl">you have {review.length}</h1>
       <article className="w-64 border border-slate-50 rounded-lg p-5">
         <div className="flex items-center mb-4 space-x-4">
-          <img
-            className="w-10 h-10 rounded-full"
-            src="/docs/images/people/profile-picture-5.jpg"
-            alt=""
-          />
+          <img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" />
           <div className="space-y-1 font-medium dark:text-white">
-            <p>Jese Leos </p>
+            <p>{user.displayName} </p>
           </div>
         </div>
 
