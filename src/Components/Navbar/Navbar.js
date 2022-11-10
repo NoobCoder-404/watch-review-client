@@ -53,11 +53,7 @@ const Navbar = () => {
                     My Review
                   </Link>
                 </li>
-                <li>
-                  <Link to={'/addservice'} className="px-3">
-                    Add Service
-                  </Link>
-                </li>
+
                 <li>
                   <Link onClick={handleLogOut} className="px-3">
                     Log Out
@@ -108,11 +104,7 @@ const Navbar = () => {
                       My Review
                     </Link>
                   </li>
-                  <li>
-                    <Link to={'/addservice'} className="px-3">
-                      Add Service
-                    </Link>
-                  </li>
+
                   <li>
                     <Link onClick={handleLogOut} className="px-3">
                       Log Out

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
 
 const ReviewItem = ({ review }) => {
-  console.log(review);
+  //console.log(review);
   const { user } = useContext(AuthContext);
   return (
     <div>

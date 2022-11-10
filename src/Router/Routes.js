@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import AddService from '../Components/AddService/AddService';
 import Blog from '../Components/Blog/Blog';
 import Details from '../Components/Details/Details';
 import ErrorPage from '../Components/ErrorPage/ErrorPage';
@@ -48,13 +47,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/reviews',
-        element: <Review />
-      },
-      {
-        path: '/addservice',
         element: (
           <PrivateRoute>
-            <AddService />
+            <Review />
           </PrivateRoute>
         )
       }
