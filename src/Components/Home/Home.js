@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import image1 from '../../Assets/Images/logo.png';
 import useTitle from '../../Hooks/useTitle';
+import Contact from '../Contact/Contact';
 import Items from '../Item/Items';
 import './Home.css';
 
@@ -28,10 +29,13 @@ const Home = () => {
         <h1 className="text-4xl px-36 text-white font-bold pb-10">Services</h1>
       </div>
       <Items />
-      <div className="text-center pb-36">
+      <div className="text-center ">
         <Link to={'/services'}>
           <button className="btn btn-primary w-32  inline-block ">See All</button>
         </Link>
+      </div>
+      <div>
+        <Contact />
       </div>
     </div>
   );
